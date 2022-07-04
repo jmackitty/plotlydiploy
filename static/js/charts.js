@@ -3,7 +3,7 @@ function init() {
   var selector = d3.select("#selDataset");
 
   // Use the list of sample names to populate the select options
-  d3.json("samples.json").then((data) => {
+  d3.json("static/js/samples.json").then((data) => {
     var sampleNames = data.names;
 
     sampleNames.forEach((sample) => {
@@ -17,6 +17,7 @@ function init() {
     var firstSample = sampleNames[0];
     buildCharts(firstSample);
     buildMetadata(firstSample);
+    buildChart1(firstSample)
   });
 }
 
@@ -27,12 +28,13 @@ function optionChanged(newSample) {
   // Fetch new data each time a new sample is selected
   buildMetadata(newSample);
   buildCharts(newSample);
+  buildChart1(newSample)
   
 }
 
 // Demographics Panel 
 function buildMetadata(sample) {
-  d3.json("samples.json").then((data) => {
+  d3.json("static/js/samples.json").then((data) => {
     var metadata = data.metadata;
     // Filter the data for the object with the desired sample number
     var resultArray = metadata.filter(sampleObj => sampleObj.id == sample);
@@ -54,9 +56,9 @@ function buildMetadata(sample) {
 }
 
 // 1. Create the buildCharts function.
-function buildCharts(sample) {
+function buildChart1(sample) {
   // 2. Use d3.json to load and retrieve the samples.json file 
-  d3.json("samples.json").then((data) => {
+  d3.json("static/js/samples.json").then((data) => {
     // 3. Create a variable that holds the samples array. 
     var samples = data.samples;
     // 4. Create a variable that filters the samples for the object with the desired sample number.
@@ -101,12 +103,25 @@ function buildCharts(sample) {
 // Create the buildCharts function.
 function buildCharts(sample) {
   // Use d3.json to load and retrieve the samples.json file 
-  d3.json("samples.json").then((data) => {
+  d3.json("static/js/samples.json").then((data) => {
     
 
     // Deliverable 1 Step 10. Use Plotly to plot the data with the layout. 
-    Plotly.newPlot(); 
+    // Plotly.newPlot(); 
+    var samples = data.samples;
+    // 4. Create a variable that filters the samples for the object with the desired sample number.
+    var resultArray = samples.filter(sampleObj => sampleObj.id == sample);
+    //  5. Create a variable that holds the first sample in the array.
+    var result = resultArray[0];
 
+    // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
+    var  ids = result.otu_ids;
+
+    var labels = result.otu_labels.slice(0, 10).reverse();
+    var values = result.sample_values.slice(0,10).reverse();
+
+    var bubbleLabels = result.otu_labels;
+    var bubbleValues = result.sample_values;
     // 1. Create the trace for the bubble chart.
     var bubbleData = [{
       x: ids,
