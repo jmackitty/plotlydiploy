@@ -11,3 +11,7 @@ The analysis will focus on creating a dashboard that visualizes the bacterial da
 ## Results:
 
 We were able to create an interactive dashboard so volunteers will be able to view the results of their belly button bacteria. The can select their ID in the dropdown menu and view their results. The volunteer can see a horizontal bar graph, a bubble chart, and a gauge chart, which all provide visualizations for the volunteer to view and interact with.
+
+
+<img width="704" alt="Github_site" src="https://user-images.githubusercontent.com/99056132/177076072-70c3b221-67a1-4e2d-b6ba-b12893dc88e2.png">
+<img width="704" alt="Github_site2" src="https://user-images.githubusercontent.com/99056132/177076074-8981f21d-cb50-411f-ad59-4df9d6e0ca21.png">
